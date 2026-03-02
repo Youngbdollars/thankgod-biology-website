@@ -73,6 +73,7 @@
             border: 3px solid #e67e22;
         }
 
+        /* navigation / tabs - now 4 tabs */
         .nav-tabs {
             display: flex;
             gap: 1.2rem;
@@ -255,6 +256,107 @@
             margin: 2rem 0;
         }
 
+        /* Quiz styles */
+        .quiz-container {
+            background: #feec9f;
+            border-radius: 5rem;
+            padding: 2.5rem;
+            border: 5px solid #ff812d;
+            box-shadow: 15px 15px 0 #b45f1a;
+            margin-top: 2rem;
+        }
+        .question-number {
+            font-size: 1.8rem;
+            color: #164a5f;
+            background: white;
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            border-radius: 3rem;
+            margin-bottom: 1.5rem;
+            border: 3px solid #ff9900;
+        }
+        .question-text {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1b4b5e;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .option-btn {
+            background: white;
+            border: none;
+            padding: 1.2rem 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            border-radius: 3rem;
+            border: 4px solid #1d7da8;
+            cursor: pointer;
+            transition: 0.1s;
+            color: #113f53;
+            box-shadow: 0 7px 0 #0f4b66;
+            font-family: 'Fredoka', sans-serif;
+        }
+        .option-btn:hover {
+            background: #f1f9ff;
+        }
+        .option-btn.selected {
+            background: #f9b83a;
+            border-color: #cf6d0d;
+            box-shadow: 0 4px 0 #b45f1a;
+            transform: translateY(3px);
+        }
+        .quiz-feedback {
+            font-size: 1.8rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 3rem;
+            text-align: center;
+        }
+        .feedback-correct {
+            background: #b8e0b8;
+            color: #1d6b1d;
+            border: 3px solid #2e9e2e;
+        }
+        .feedback-wrong {
+            background: #f8c9c9;
+            color: #a12a2a;
+            border: 3px solid #c44;
+        }
+        .next-btn, .restart-btn {
+            background: #ffb054;
+            border: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+            padding: 1rem 3rem;
+            border-radius: 4rem;
+            border: 4px solid #cf6d0d;
+            box-shadow: 0 7px 0 #b45f1a;
+            cursor: pointer;
+            color: #1b4b5e;
+            margin: 1rem 0.5rem 0 0;
+            font-family: 'Fredoka', sans-serif;
+        }
+        .next-btn:hover, .restart-btn:hover {
+            background: #ffa33c;
+            transform: translateY(2px);
+            box-shadow: 0 5px 0 #b45f1a;
+        }
+        .score-display {
+            font-size: 2rem;
+            background: white;
+            padding: 0.5rem 2rem;
+            border-radius: 4rem;
+            display: inline-block;
+            border: 3px solid #ff9900;
+            margin-bottom: 2rem;
+        }
+
         .footer {
             margin-top: 3rem;
             text-align: center;
@@ -294,11 +396,12 @@
         <div class="badge"><i class="fas fa-seedling"></i> discover life</div>
     </div>
 
-    <!-- TABS: LEARN, IMAGES, VIDEOS -->
+    <!-- TABS: LEARN, IMAGES, VIDEOS, QUIZ (new) -->
     <div class="nav-tabs">
         <button class="nav-btn active" id="tabLearn"><i class="fas fa-book-open"></i> learn & play</button>
         <button class="nav-btn" id="tabImages"><i class="fas fa-images"></i> image wonder</button>
         <button class="nav-btn" id="tabVideos"><i class="fas fa-video"></i> video zone</button>
+        <button class="nav-btn" id="tabQuiz"><i class="fas fa-puzzle-piece"></i> quiz</button>
     </div>
 
     <!-- PANEL 1: LEARN -->
@@ -341,70 +444,60 @@
             </div>
         </div>
 
-        <!-- butterfly image only (correct) -->
+        <!-- butterfly image only -->
         <div class="big-image-row">
             <img src="https://images.pexels.com/photos/674318/pexels-photo-674318.jpeg?auto=compress&cs=tinysrgb&w=400" alt="butterfly on flower">
         </div>
         <p style="font-size:1.5rem; background:#ffde94; padding:1rem; border-radius:3rem; text-align:center;">🌟 keep exploring — every day is a discovery!</p>
     </div>
 
-    <!-- PANEL 2: IMAGE WONDER (every image matches its caption exactly) -->
+    <!-- PANEL 2: IMAGE WONDER (every image matches its caption) -->
     <div class="panel" id="imagesPanel">
         <div class="section-title"><i class="fas fa-camera"></i> spectacular biology images</div>
         <div class="card-grid">
-            <!-- grey crowned crane -->
             <div class="media-card">
                 <img src="https://images.pexels.com/photos/45853/grey-crowned-crane-bird-crane-animal-45853.jpeg?auto=compress&cs=tinysrgb&w=400" alt="grey crowned crane" loading="lazy">
                 <p>🕊️ grey crowned crane</p>
             </div>
-            <!-- monkey -->
             <div class="media-card">
                 <img src="https://images.pexels.com/photos/70862/pexels-photo-70862.jpeg?auto=compress&cs=tinysrgb&w=400" alt="monkey" loading="lazy">
                 <p>🐒 curious monkey</p>
             </div>
-            <!-- toucan -->
             <div class="media-card">
                 <img src="https://images.pexels.com/photos/126407/pexels-photo-126407.jpeg?auto=compress&cs=tinysrgb&w=400" alt="toucan" loading="lazy">
                 <p>🌈 toucan</p>
             </div>
-            <!-- sea turtle -->
             <div class="media-card">
                 <img src="https://images.pexels.com/photos/62307/air-bubbles-diving-underwater-blow-62307.jpeg?auto=compress&cs=tinysrgb&w=400" alt="sea turtle" loading="lazy">
                 <p>🐢 sea turtle</p>
             </div>
-            <!-- polar bear (correct image) -->
             <div class="media-card">
                 <img src="https://images.pexels.com/photos/247431/pexels-photo-247431.jpeg?auto=compress&cs=tinysrgb&w=400" alt="polar bear" loading="lazy">
                 <p>🐻‍❄️ polar bear</p>
             </div>
-            <!-- elephant family -->
             <div class="media-card">
                 <img src="https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400" alt="elephant family" loading="lazy">
                 <p>🐘 elephant family</p>
             </div>
         </div>
-        <!-- extra images row now contains only butterfly and a different polar bear (still correct) -->
         <div class="big-image-row">
             <img src="https://images.pexels.com/photos/688906/pexels-photo-688906.jpeg?auto=compress&cs=tinysrgb&w=500" alt="butterfly">
             <img src="https://images.pexels.com/photos/326063/pexels-photo-326063.jpeg?auto=compress&cs=tinysrgb&w=500" alt="polar bear">
         </div>
     </div>
 
-    <!-- PANEL 3: VIDEO ZONE (only retained videos: photosynthesis, human body, butterfly life cycle) -->
+    <!-- PANEL 3: VIDEO ZONE (only retained videos) -->
     <div class="panel" id="videosPanel">
         <div class="section-title"><i class="fas fa-play"></i> cool biology videos</div>
         <div class="video-grid">
-            <!-- photosynthesis -->
             <div class="media-card">
                 <iframe src="https://www.youtube.com/embed/D1Ymc311XS8" title="photosynthesis for kids" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <p>🌞 how plants eat</p>
             </div>
-            <!-- human body -->
             <div class="media-card">
                 <iframe src="https://www.youtube.com/embed/gEUu-A2wfSE" title="human body" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <p>🧠 your amazing body</p>
             </div>
-            <!-- butterfly life cycle -->
             <div class="media-card">
                 <iframe src="https://www.youtube.com/embed/ocWgSgMGxOc" title="butterfly life cycle" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <p>🦋 from caterpillar to butterfly</p>
@@ -416,6 +509,14 @@
         <img src="https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=500" alt="elephants" style="width:100%; max-width:500px; border-radius:4rem; border:8px solid #fdcf6b; display:block; margin:1rem auto;">
     </div>
 
+    <!-- PANEL 4: QUIZ (new) -->
+    <div class="panel" id="quizPanel">
+        <div class="section-title"><i class="fas fa-puzzle-piece"></i> test your knowledge</div>
+        <div class="quiz-container" id="quizContainer">
+            <!-- quiz will be generated by JavaScript -->
+        </div>
+    </div>
+
     <div class="footer">
         <i class="fas fa-heart" style="color:#eb4d4b;"></i> biology is everywhere — keep exploring!
     </div>
@@ -423,20 +524,43 @@
 
 <script>
     (function() {
+        // ---------- QUIZ DATA ----------
+        const questions = [
+            { question: "What do plants need to make their own food?", options: ["Sunlight", "Milk", "Meat", "Rocks"], correct: 0 },
+            { question: "Which animal has three hearts?", options: ["Elephant", "Octopus", "Giraffe", "Shark"], correct: 1 },
+            { question: "How many bones do adults have?", options: ["About 100", "About 206", "About 300", "About 500"], correct: 1 },
+            { question: "What is the biggest animal on Earth?", options: ["Elephant", "Blue Whale", "Giraffe", "Great White Shark"], correct: 1 },
+            { question: "Which group of animals has feathers?", options: ["Mammals", "Reptiles", "Birds", "Fish"], correct: 2 },
+            { question: "What part of the plant conducts photosynthesis?", options: ["Roots", "Leaves", "Flowers", "Stem"], correct: 1 },
+            { question: "Do butterflies start as caterpillars?", options: ["Yes", "No", "Only some", "They come from eggs directly"], correct: 0 }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedOption = null;
+        let answerSubmitted = false;
+
+        // DOM elements for tabs
         const tabLearn = document.getElementById('tabLearn');
         const tabImages = document.getElementById('tabImages');
         const tabVideos = document.getElementById('tabVideos');
+        const tabQuiz = document.getElementById('tabQuiz');
         const panelLearn = document.getElementById('learnPanel');
         const panelImages = document.getElementById('imagesPanel');
         const panelVideos = document.getElementById('videosPanel');
+        const panelQuiz = document.getElementById('quizPanel');
+        const quizContainer = document.getElementById('quizContainer');
 
+        // Tab switching
         function setActivePanel(active) {
             tabLearn.classList.remove('active');
             tabImages.classList.remove('active');
             tabVideos.classList.remove('active');
+            tabQuiz.classList.remove('active');
             panelLearn.classList.remove('active-panel');
             panelImages.classList.remove('active-panel');
             panelVideos.classList.remove('active-panel');
+            panelQuiz.classList.remove('active-panel');
 
             if (active === 'learn') {
                 tabLearn.classList.add('active');
@@ -447,12 +571,130 @@
             } else if (active === 'videos') {
                 tabVideos.classList.add('active');
                 panelVideos.classList.add('active-panel');
+            } else if (active === 'quiz') {
+                tabQuiz.classList.add('active');
+                panelQuiz.classList.add('active-panel');
+                renderQuiz(); // render quiz when switching to it
             }
         }
 
         tabLearn.addEventListener('click', () => setActivePanel('learn'));
         tabImages.addEventListener('click', () => setActivePanel('images'));
         tabVideos.addEventListener('click', () => setActivePanel('videos'));
+        tabQuiz.addEventListener('click', () => setActivePanel('quiz'));
+
+        // ---------- QUIZ RENDER FUNCTION ----------
+        function renderQuiz() {
+            if (!panelQuiz.classList.contains('active-panel')) return; // only render if active
+
+            const q = questions[currentQuestionIndex];
+            let optionsHtml = '';
+            q.options.forEach((opt, idx) => {
+                const selectedClass = (selectedOption === idx && !answerSubmitted) ? 'selected' : '';
+                optionsHtml += `<button class="option-btn ${selectedClass}" data-opt-index="${idx}">${opt}</button>`;
+            });
+
+            let feedbackHtml = '';
+            if (answerSubmitted) {
+                const isCorrect = (selectedOption === q.correct);
+                feedbackHtml = `<div class="quiz-feedback ${isCorrect ? 'feedback-correct' : 'feedback-wrong'}">
+                    ${isCorrect ? '✅ correct!' : '❌ oops! correct answer: ' + q.options[q.correct]}
+                </div>`;
+            }
+
+            let nextOrRestart = '';
+            if (currentQuestionIndex < questions.length - 1) {
+                nextOrRestart = `<button class="next-btn" id="nextQuestionBtn">next ➡️</button>`;
+            } else {
+                if (answerSubmitted) {
+                    nextOrRestart = `<button class="restart-btn" id="restartQuizBtn">play again 🔄</button>`;
+                }
+            }
+
+            const quizHtml = `
+                <div class="score-display">⭐ score: ${score} / ${questions.length}</div>
+                <div class="question-number">question ${currentQuestionIndex+1} / ${questions.length}</div>
+                <div class="question-text">${q.question}</div>
+                <div class="options-grid" id="optionsGrid">
+                    ${optionsHtml}
+                </div>
+                ${feedbackHtml}
+                <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                    ${nextOrRestart}
+                </div>
+            `;
+            quizContainer.innerHTML = quizHtml;
+
+            // Attach event listeners to option buttons
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if (answerSubmitted) return; // disable after answer
+                    const idx = parseInt(e.target.dataset.optIndex);
+                    selectedOption = idx;
+                    // remove selected class from all, add to current
+                    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    e.target.classList.add('selected');
+                });
+            });
+
+            // If answer not submitted, we need a way to submit? Actually we can auto-submit on option click?
+            // Better to have a submit button, but for simplicity, we can use "next" as submit+next.
+            // We'll modify: next button submits answer and moves to next. For last question, next becomes restart.
+            // So we add a submit/next button if not submitted.
+            if (!answerSubmitted && currentQuestionIndex < questions.length) {
+                // Add a "check answer" button temporarily? Let's add a separate submit button for clarity.
+                // But we want it simple for kids: choose answer, then click next.
+                // So we need a "next" button that also submits.
+                // But we already have nextOrRestart, but it appears only if answerSubmitted is true. So we need to show next even before answer.
+                // Let's redesign: always show a "submit answer" button, then after submit show next.
+                // I'll implement that.
+            }
+
+            // Because our current structure shows next only after answerSubmitted, we need to add a submit button when no answer.
+            if (!answerSubmitted) {
+                const submitBtn = document.createElement('button');
+                submitBtn.className = 'next-btn';
+                submitBtn.id = 'submitAnswerBtn';
+                submitBtn.innerText = 'submit answer ✅';
+                submitBtn.style.marginTop = '1rem';
+                const container = quizContainer.querySelector('div[style*="display:flex"]') || quizContainer;
+                container.appendChild(submitBtn);
+                submitBtn.addEventListener('click', () => {
+                    if (selectedOption === null) {
+                        alert('pick an answer first!');
+                        return;
+                    }
+                    answerSubmitted = true;
+                    if (selectedOption === q.correct) {
+                        score++;
+                    }
+                    renderQuiz(); // re-render with feedback
+                });
+            } else {
+                // if answer submitted, attach next or restart
+                const nextBtn = document.getElementById('nextQuestionBtn');
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        currentQuestionIndex++;
+                        selectedOption = null;
+                        answerSubmitted = false;
+                        renderQuiz();
+                    });
+                }
+                const restartBtn = document.getElementById('restartQuizBtn');
+                if (restartBtn) {
+                    restartBtn.addEventListener('click', () => {
+                        currentQuestionIndex = 0;
+                        score = 0;
+                        selectedOption = null;
+                        answerSubmitted = false;
+                        renderQuiz();
+                    });
+                }
+            }
+        }
+
+        // Initial render not needed until quiz tab opened.
     })();
 </script>
 </body>
